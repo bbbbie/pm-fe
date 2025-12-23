@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "services",
+  "info": {
+    "singularName": "service",
+    "pluralName": "services",
+    "displayName": "Service"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "summary": {
+      "type": "text"
+    },
+    "service_feature": {
+      "type": "component",
+      "component": "service.feature-item",
+      "repeatable": true
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "hero_section": {
+      "type": "component",
+      "component": "service.hero-service",
+      "repeatable": false
+    },
+    "content_section": {
+      "type": "component",
+      "component": "service.content-service",
+      "repeatable": false
+    },
+    "related_products": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product",
+      "mappedBy": "services"
+    },
+    "portfolio_settings": {
+      "type": "component",
+      "component": "service.port-service",
+      "repeatable": false
+    }
+  }
+}

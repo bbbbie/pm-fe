@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_home_home_products",
+  "info": {
+    "displayName": "Home Product"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product"
+    }
+  },
+  "config": {}
+}

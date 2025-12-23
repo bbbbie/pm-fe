@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_service_content_services",
+  "info": {
+    "displayName": "Content Service"
+  },
+  "options": {},
+  "attributes": {
+    "intro_title": {
+      "type": "string"
+    },
+    "banner_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "body": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    }
+  },
+  "config": {}
+}

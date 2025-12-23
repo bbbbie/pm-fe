@@ -55,6 +55,15 @@
     },
     "old_price": {
       "type": "integer"
+    },
+    "isFeatured": {
+      "type": "boolean"
+    },
+    "services": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::service.service",
+      "inversedBy": "related_products"
     }
   }
 }

@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_home_home_banners",
+  "collectionName": "components_service_hero_services",
   "info": {
-    "displayName": "Home Banner"
+    "displayName": "Hero Service"
   },
   "options": {},
   "attributes": {
@@ -12,21 +12,13 @@
       "type": "text"
     },
     "features": {
-      "type": "text"
+      "type": "component",
+      "component": "service.hero-feature-item",
+      "repeatable": true
     },
     "main_image": {
       "type": "media",
       "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "sub_images": {
-      "type": "media",
-      "multiple": true,
       "allowedTypes": [
         "images",
         "files",

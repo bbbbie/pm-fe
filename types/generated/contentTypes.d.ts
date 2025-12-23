@@ -480,6 +480,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 80;
       }>;
+    isFeatured: Schema.Attribute.Boolean;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -562,6 +563,37 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCompanyInfoCompanyInfo extends Struct.SingleTypeSchema {
+  collectionName: 'company_infos';
+  info: {
+    displayName: 'CompanyInfo';
+    pluralName: 'company-infos';
+    singularName: 'company-info';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    address: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::company-info.company-info'
+    > &
+      Schema.Attribute.Private;
+    phone_1: Schema.Attribute.String;
+    phone_2: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -609,9 +641,21 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     home_banner: Schema.Attribute.Component<'home.home-banner', false>;
+    home_contact_banner: Schema.Attribute.Component<
+      'shared.contact-banner',
+      false
+    >;
     home_equipment: Schema.Attribute.Component<'home.home-equipment', false>;
+    home_experience: Schema.Attribute.Component<'home.home-experience', false>;
+    home_news: Schema.Attribute.Component<'home.home-news', false>;
     home_process: Schema.Attribute.Component<'home.home-process', false>;
+    home_products: Schema.Attribute.Component<'home.home-product', false>;
+    home_services: Schema.Attribute.Component<'home.home-service', false>;
     home_story: Schema.Attribute.Component<'home.home-story', false>;
+    home_testimonials: Schema.Attribute.Component<
+      'home.home-testimonial',
+      false
+    >;
     home_welcome: Schema.Attribute.Component<'home.home-welcome', false>;
     home_why_choose: Schema.Attribute.Component<'home.home-why-choose', false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -645,6 +689,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       true
     >;
     intro: Schema.Attribute.Text;
+    isFeatured: Schema.Attribute.Boolean;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -655,6 +700,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     old_price: Schema.Attribute.Integer;
     price: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
+    services: Schema.Attribute.Relation<'manyToMany', 'api::service.service'>;
     slug: Schema.Attribute.UID<'name'>;
     thumbnail: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     updatedAt: Schema.Attribute.DateTime;
@@ -694,6 +740,51 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     year: Schema.Attribute.String;
+  };
+}
+
+export interface ApiServiceService extends Struct.CollectionTypeSchema {
+  collectionName: 'services';
+  info: {
+    displayName: 'Service';
+    pluralName: 'services';
+    singularName: 'service';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content_section: Schema.Attribute.Component<
+      'service.content-service',
+      false
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    hero_section: Schema.Attribute.Component<'service.hero-service', false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::service.service'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    portfolio_settings: Schema.Attribute.Component<
+      'service.port-service',
+      false
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    related_products: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::product.product'
+    >;
+    service_feature: Schema.Attribute.Component<'service.feature-item', true>;
+    slug: Schema.Attribute.UID<'name'>;
+    summary: Schema.Attribute.Text;
+    thumbnail: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1211,10 +1302,12 @@ declare module '@strapi/strapi' {
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
+      'api::company-info.company-info': ApiCompanyInfoCompanyInfo;
       'api::global.global': ApiGlobalGlobal;
       'api::home.home': ApiHomeHome;
       'api::product.product': ApiProductProduct;
       'api::project.project': ApiProjectProject;
+      'api::service.service': ApiServiceService;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

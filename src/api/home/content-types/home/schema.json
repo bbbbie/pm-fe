@@ -40,6 +40,36 @@
       "type": "component",
       "component": "home.home-process",
       "repeatable": false
+    },
+    "home_services": {
+      "type": "component",
+      "component": "home.home-service",
+      "repeatable": false
+    },
+    "home_experience": {
+      "type": "component",
+      "component": "home.home-experience",
+      "repeatable": false
+    },
+    "home_products": {
+      "type": "component",
+      "component": "home.home-product",
+      "repeatable": false
+    },
+    "home_news": {
+      "type": "component",
+      "component": "home.home-news",
+      "repeatable": false
+    },
+    "home_testimonials": {
+      "type": "component",
+      "component": "home.home-testimonial",
+      "repeatable": false
+    },
+    "home_contact_banner": {
+      "type": "component",
+      "component": "shared.contact-banner",
+      "repeatable": false
     }
   }
 }

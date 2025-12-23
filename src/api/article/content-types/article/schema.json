@@ -41,6 +41,9 @@
     },
     "content": {
       "type": "richtext"
+    },
+    "isFeatured": {
+      "type": "boolean"
     }
   }
 }

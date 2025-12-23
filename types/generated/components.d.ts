@@ -6,14 +6,10 @@ export interface HomeHomeBanner extends Struct.ComponentSchema {
     displayName: 'Home Banner';
   };
   attributes: {
-    address: Schema.Attribute.String;
-    email: Schema.Attribute.Email;
     features: Schema.Attribute.Text;
     main_image: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
-    phone_1: Schema.Attribute.String;
-    phone_2: Schema.Attribute.String;
     sub_images: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
@@ -36,6 +32,31 @@ export interface HomeHomeEquipment extends Struct.ComponentSchema {
   };
 }
 
+export interface HomeHomeExperience extends Struct.ComponentSchema {
+  collectionName: 'components_home_home_experiences';
+  info: {
+    displayName: 'Home Experience';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    projects: Schema.Attribute.Relation<'oneToMany', 'api::project.project'>;
+    thumbnail: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface HomeHomeNews extends Struct.ComponentSchema {
+  collectionName: 'components_home_home_news';
+  info: {
+    displayName: 'Home News';
+  };
+  attributes: {
+    articles: Schema.Attribute.Relation<'oneToOne', 'api::article.article'>;
+    description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface HomeHomeProcess extends Struct.ComponentSchema {
   collectionName: 'components_home_home_processes';
   info: {
@@ -45,6 +66,35 @@ export interface HomeHomeProcess extends Struct.ComponentSchema {
     steps: Schema.Attribute.Component<'home.steps', true>;
     subtitle: Schema.Attribute.Text;
     title: Schema.Attribute.String;
+  };
+}
+
+export interface HomeHomeProduct extends Struct.ComponentSchema {
+  collectionName: 'components_home_home_products';
+  info: {
+    displayName: 'Home Product';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface HomeHomeService extends Struct.ComponentSchema {
+  collectionName: 'components_home_home_services';
+  info: {
+    displayName: 'Home Service';
+  };
+  attributes: {
+    featured_services: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::service.service'
+    >;
+    other_services: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::service.service'
+    >;
   };
 }
 
@@ -62,6 +112,18 @@ export interface HomeHomeStory extends Struct.ComponentSchema {
         }
       >;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface HomeHomeTestimonial extends Struct.ComponentSchema {
+  collectionName: 'components_home_home_testimonials';
+  info: {
+    displayName: 'Home Testimonial';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    reviews: Schema.Attribute.Component<'shared.testimonial-item', true>;
     title: Schema.Attribute.String;
   };
 }
@@ -137,6 +199,102 @@ export interface HomeWhyChooseStat extends Struct.ComponentSchema {
   };
 }
 
+export interface ServiceContentService extends Struct.ComponentSchema {
+  collectionName: 'components_service_content_services';
+  info: {
+    displayName: 'Content Service';
+  };
+  attributes: {
+    banner_image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    body: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+    intro_title: Schema.Attribute.String;
+  };
+}
+
+export interface ServiceFeatureItem extends Struct.ComponentSchema {
+  collectionName: 'components_service_feature_items';
+  info: {
+    displayName: 'Service';
+  };
+  attributes: {
+    content: Schema.Attribute.String;
+  };
+}
+
+export interface ServiceHeroFeatureItem extends Struct.ComponentSchema {
+  collectionName: 'components_service_hero_feature_items';
+  info: {
+    displayName: 'Hero Feature Item';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface ServiceHeroService extends Struct.ComponentSchema {
+  collectionName: 'components_service_hero_services';
+  info: {
+    displayName: 'Hero Service';
+  };
+  attributes: {
+    features: Schema.Attribute.Component<'service.hero-feature-item', true>;
+    main_image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface ServiceHomeService extends Struct.ComponentSchema {
+  collectionName: 'components_service_home_services';
+  info: {
+    displayName: 'Home Service';
+  };
+  attributes: {
+    main_image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface ServicePortService extends Struct.ComponentSchema {
+  collectionName: 'components_service_port_services';
+  info: {
+    displayName: 'Port Service';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SharedContactBanner extends Struct.ComponentSchema {
+  collectionName: 'components_shared_contact_banners';
+  info: {
+    displayName: 'ContactBanner';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    gallery: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SharedMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_media';
   info: {
@@ -197,24 +355,50 @@ export interface SharedSlider extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedTestimonialItem extends Struct.ComponentSchema {
+  collectionName: 'components_shared_testimonial_items';
+  info: {
+    displayName: 'TestimonialItem';
+  };
+  attributes: {
+    author_name: Schema.Attribute.String;
+    author_position: Schema.Attribute.String;
+    avatar: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    content: Schema.Attribute.Text;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'home.home-banner': HomeHomeBanner;
       'home.home-equipment': HomeHomeEquipment;
+      'home.home-experience': HomeHomeExperience;
+      'home.home-news': HomeHomeNews;
       'home.home-process': HomeHomeProcess;
+      'home.home-product': HomeHomeProduct;
+      'home.home-service': HomeHomeService;
       'home.home-story': HomeHomeStory;
+      'home.home-testimonial': HomeHomeTestimonial;
       'home.home-welcome': HomeHomeWelcome;
       'home.home-why-choose': HomeHomeWhyChoose;
       'home.machine': HomeMachine;
       'home.steps': HomeSteps;
       'home.why-choose-feature': HomeWhyChooseFeature;
       'home.why-choose-stat': HomeWhyChooseStat;
+      'service.content-service': ServiceContentService;
+      'service.feature-item': ServiceFeatureItem;
+      'service.hero-feature-item': ServiceHeroFeatureItem;
+      'service.hero-service': ServiceHeroService;
+      'service.home-service': ServiceHomeService;
+      'service.port-service': ServicePortService;
+      'shared.contact-banner': SharedContactBanner;
       'shared.media': SharedMedia;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
       'shared.slider': SharedSlider;
+      'shared.testimonial-item': SharedTestimonialItem;
     }
   }
 }

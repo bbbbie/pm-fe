@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_service_port_services",
+  "info": {
+    "displayName": "Port Service"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

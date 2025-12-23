@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_home_home_banners",
+  "collectionName": "components_service_home_services",
   "info": {
-    "displayName": "Home Banner"
+    "displayName": "Home Service"
   },
   "options": {},
   "attributes": {
@@ -11,22 +11,9 @@
     "subtitle": {
       "type": "text"
     },
-    "features": {
-      "type": "text"
-    },
     "main_image": {
       "type": "media",
       "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "sub_images": {
-      "type": "media",
-      "multiple": true,
       "allowedTypes": [
         "images",
         "files",

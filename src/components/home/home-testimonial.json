@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_home_home_testimonials",
+  "info": {
+    "displayName": "Home Testimonial"
+  },
+  "options": {},
+  "attributes": {
+    "reviews": {
+      "type": "component",
+      "component": "shared.testimonial-item",
+      "repeatable": true
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

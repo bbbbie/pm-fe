@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_service_hero_feature_items",
+  "info": {
+    "displayName": "Hero Feature Item"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}
